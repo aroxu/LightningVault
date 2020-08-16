@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, Text, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 type Props = {}
@@ -14,10 +14,10 @@ const Loading: React.FC<Props> = () => {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* TODO: Replace Text to Loading animation */}
       <Text>Loading</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 

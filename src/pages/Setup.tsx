@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import LinearGradient from 'react-native-linear-gradient'
@@ -9,7 +9,7 @@ import PINCode from '@haskkor/react-native-pincode'
 
 const Setup: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.top}>
         <LinearGradient
           colors={['#9795f0', '#fbc8d4']}
@@ -21,7 +21,7 @@ const Setup: React.FC = () => {
       <View style={styles.bottom}>
         <PINCode status={'choose'} />
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

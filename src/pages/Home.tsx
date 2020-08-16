@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, Text, StyleSheet } from 'react-native'
 
 const Home: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Home Screen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 
