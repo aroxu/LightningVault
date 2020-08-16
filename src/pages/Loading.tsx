@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
-
 import { View, Text, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-const Loading: React.FC = ({ navigation }) => {
+type Props = {}
+
+const Loading: React.FC<Props> = () => {
+  const navigation = useNavigation()
+
   useEffect(() => {
     const isSetupEnd = false
     if (isSetupEnd) navigation.navigate('Auth')
