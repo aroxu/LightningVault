@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { useDispatch } from 'react-redux'
 import { showHome } from '../store/nav'
 
-import { styles } from './Auth.style'
+import { styles } from '../styles/Auth.style'
 
 import PINCode from '@haskkor/react-native-pincode'
 

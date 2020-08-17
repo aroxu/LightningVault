@@ -19,7 +19,7 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
-  rules: { 'prettier/prettier': 'error', 'react/prop-type': 'off' },
+  rules: { 'react/prop-type': 'off', 'prettier/prettier': 'error' },
   settings: {
     react: {
       version: 'detect'

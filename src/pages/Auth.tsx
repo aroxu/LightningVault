@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import LinearGradient from 'react-native-linear-gradient'
 
-import { styles } from './Auth.style'
+import { styles } from '../styles/Auth.style'
 
 import PINCode from '@haskkor/react-native-pincode'
 

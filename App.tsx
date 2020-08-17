@@ -10,6 +10,7 @@ import rootReducer, { RootState } from './src/store'
 import ReduxThunk from 'redux-thunk'
 
 import HomeScreen from './src/pages/Home'
+import PasswordListScreen from './src/pages/PasswordList'
 import AuthScreen from './src/pages/Auth'
 import SetupScreen from './src/pages/Setup'
 import LoadingScreen from './src/components/Loading'
@@ -39,6 +40,7 @@ const Nav: React.FC = () => {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             {/* {isHome ? ( */}
             <Stack.Screen name='Home' component={HomeScreen} />
+            <Stack.Screen name='PasswordList' component={PasswordListScreen} />
             {/* ) : (
               <>
                 {setupend ? (
