@@ -9,7 +9,6 @@ import com.oblador.keychain.KeychainPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.rnbiometrics.ReactNativeBiometricsPackage;
-import li.yunqi.rnsecurestorage.RNSecureStoragePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

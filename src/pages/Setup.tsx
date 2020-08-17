@@ -1,60 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, Alert } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import LinearGradient from 'react-native-linear-gradient'
+import { useNavigation } from '@react-navigation/native'
 
-import PINCode from '@haskkor/react-native-pincode'
+import { styles } from './Auth.style'
+
+import PINCode, { hasUserSetPinCode } from '@haskkor/react-native-pincode'
 
 const Setup: React.FC = () => {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    const setup = async () => {}
+    setup()
+  }, [])
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.background}>
       <View style={styles.top}>
         <LinearGradient
-          colors={['#9795f0', '#fbc8d4']}
+          colors={['#9795F0', '#FBC8D4']}
           style={styles.iconWrapper}>
           <FontAwesomeIcon icon={faCheck} size={36} color='#ffffff' />
         </LinearGradient>
-        <Text style={styles.topTitle}>Welcome</Text>
+        <Text style={styles.topTitle}>Welcome Back</Text>
       </View>
       <View style={styles.bottom}>
-        <PINCode status={'choose'} />
+        <PINCode
+          status={'choose'}
+          passwordLength={6}
+          finishProcess={(data) => {
+            console.log(data)
+          }}
+        />
       </View>
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  top: {
-    flex: 1,
-    height: '40%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#E8E8E8'
-  },
-  iconWrapper: {
-    width: 110,
-    height: 110,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopLeftRadius: 70,
-    borderBottomLeftRadius: 70,
-    borderBottomRightRadius: 70
-    // backgroundColor: '#000000'
-  },
-  topTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    marginTop: 12
-  },
-  bottom: {
-    height: '60%',
-    backgroundColor: '#ECECEC'
-  }
-})
 
 export default Setup

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { SafeAreaView, Text, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { hasUserSetPinCode } from '@haskkor/react-native-pincode'
 
 type Props = {}
 
@@ -8,9 +9,13 @@ const Loading: React.FC<Props> = () => {
   const navigation = useNavigation()
 
   useEffect(() => {
-    const isSetupEnd = false
-    if (isSetupEnd) navigation.navigate('Auth')
-    else navigation.navigate('Setup')
+    const setup = async () => {
+      const endSetup = await hasUserSetPinCode()
+      console.log(endSetup)
+      if (endSetup) navigation.navigate('Auth')
+      else navigation.navigate('Setup')
+    }
+    setup()
   }, [])
 
   return (
