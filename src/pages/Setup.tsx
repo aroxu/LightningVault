@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { SafeAreaView, View, Text, StyleSheet, Alert } from 'react-native'
+import { SafeAreaView, View, Text } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import LinearGradient from 'react-native-linear-gradient'
-import { useNavigation } from '@react-navigation/native'
+// import { useNavigation } from '@react-navigation/native'
+
+import { useDispatch } from 'react-redux'
+import { showHome } from '../store/nav'
 
 import { styles } from './Auth.style'
 
-import PINCode, { hasUserSetPinCode } from '@haskkor/react-native-pincode'
+import PINCode from '@haskkor/react-native-pincode'
 
 const Setup: React.FC = () => {
-  const navigation = useNavigation()
+  //   const navigation = useNavigation()
 
-  useEffect(() => {
-    const setup = async () => {}
-    setup()
-  }, [])
+  const dispatch = useDispatch()
 
   return (
     <SafeAreaView style={styles.background}>
@@ -33,7 +33,7 @@ const Setup: React.FC = () => {
           status={'choose'}
           passwordLength={6}
           finishProcess={(data) => {
-            console.log(data)
+            dispatch(showHome())
           }}
         />
       </View>

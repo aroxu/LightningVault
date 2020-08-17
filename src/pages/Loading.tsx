@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { hasUserSetPinCode } from '@haskkor/react-native-pincode'
+
+import { styles } from './Loading.style'
 
 type Props = {}
 
@@ -25,13 +27,5 @@ const Loading: React.FC<Props> = () => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
 
 export default Loading
