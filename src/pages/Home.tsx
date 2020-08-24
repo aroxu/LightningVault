@@ -28,7 +28,7 @@ import { useNavigation } from '@react-navigation/native'
 
 const Home: React.FC = () => {
   // eslint-disable-next-line no-unused-vars
-  const [search, setSearch] = useState<string>('')
+  // const [search, setSearch] = useState<string>('')
   const [addFolderVisible, setAddFolderVisible] = useState<boolean>(false)
   const [updateFolderVisible, setUpdateFolderVisible] = useState<boolean>(false)
   const [updateFolderTarget, setUpdateFolderTarget] = useState<Folder | null>(
@@ -104,18 +104,17 @@ const Home: React.FC = () => {
           </View>
           {/* <SearchComponent onChange={(text) => setSearch(text)} /> */}
           <ScrollView>
-            {/* {folders.length === 0 ? (
-              // <View>
+            {folders.length === 0 ? (
               <View style={styles.emptyItem}>
                 <Text style={styles.emptyItemText}>
                   There are no folders yet{'\n'}Click the button below to add
                 </Text>
               </View>
-            ) : ( */}
-            <View style={{ marginTop: 12 }}>
-              {sortFolder().map((item, index) => renderFolder(item, index))}
-            </View>
-            {/* )} */}
+            ) : (
+              <View style={{ marginTop: 12 }}>
+                {sortFolder().map((item, index) => renderFolder(item, index))}
+              </View>
+            )}
           </ScrollView>
           <View>
             <FAB

@@ -702,6 +702,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = lightningvault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.0.1_DEV;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -725,6 +726,7 @@
 				DEVELOPMENT_TEAM = SDXJM5P3N5;
 				INFOPLIST_FILE = lightningvault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.0.1_DEV;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

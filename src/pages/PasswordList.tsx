@@ -70,8 +70,8 @@ const PasswordList: React.FC<props> = ({
   }
 
   return (
-    <AppContainer onBack={navigation.goBack}>
-      <SafeAreaView>
+    <>
+      <AppContainer onBack={navigation.goBack}>
         <View>
           <AddPassword
             visible={addPassword}
@@ -111,17 +111,19 @@ const PasswordList: React.FC<props> = ({
               )}
             </View>
           </ScrollView>
-          <View>
-            <FAB
-              buttonColor='red'
-              iconTextColor='#FFFFFF'
-              onClickAction={handleClickFAB}
-              iconTextComponent={<Icon name='ios-add' />}
-            />
-          </View>
+        </View>
+      </AppContainer>
+      <SafeAreaView>
+        <View>
+          <FAB
+            buttonColor='red'
+            iconTextColor='#FFFFFF'
+            onClickAction={handleClickFAB}
+            iconTextComponent={<Icon name='ios-add' />}
+          />
         </View>
       </SafeAreaView>
-    </AppContainer>
+    </>
   )
 }
 

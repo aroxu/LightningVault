@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Status } from 'react-native'
+import { StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { hasUserSetPinCode } from '@haskkor/react-native-pincode'
@@ -43,6 +43,7 @@ const Nav: React.FC = () => {
   }, [])
   return (
     <>
+      <StatusBar barStyle='dark-content' />
       {loading ? (
         <LoadingScreen />
       ) : (

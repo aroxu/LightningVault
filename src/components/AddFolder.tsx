@@ -57,7 +57,7 @@ const AddFolder: React.FC<props> = ({ visible, onCancel }: props) => {
                 onChangeText={(value) => setText(value)}
               />
             </View>
-            <View style={styles.action}>
+            <View style={styles.actions}>
               <View />
               <View>
                 <TouchableOpacity

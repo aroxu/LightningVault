@@ -70,16 +70,16 @@ const Settings: React.FC<props> = () => {
         <View style={{ marginTop: 24, marginHorizontal: 24 }}>
           <BuildCategory name={'danger zone'}>
             <BuildButton
-              name='Update Password'
+              name='Change Auth Password'
               buttonName='Update'
-              description='Update Your Auth Password'
+              description='Update Your Auth Password.'
               color='#ff0000'
               onPress={() => setResetPincodeVisible(true)}
             />
             <BuildButton
-              name='Delete All'
+              name='Delete All Data'
               buttonName='Delete All'
-              description='Delete All of the data'
+              description='Delete All data of password and folder.'
               color='#ff0000'
               onPress={() => setConfirmResetVislible(true)}
             />

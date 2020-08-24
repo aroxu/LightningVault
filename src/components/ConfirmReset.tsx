@@ -24,7 +24,7 @@ const ConfirmReset: React.FC<props> = ({ visible, onCancel }: props) => {
             <View style={{ alignItems: 'flex-start', width: '100%' }}>
               <View style={styles.header}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>
-                  Reset All
+                  Sure to Reset Data?
                 </Text>
                 <TouchableOpacity onPress={() => onCancel(false)}>
                   <Icon name='ios-close-outline' size={22} />

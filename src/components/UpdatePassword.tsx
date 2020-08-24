@@ -88,21 +88,21 @@ const UpdatePassword: React.FC<props> = ({
               />
               <TextInput
                 style={[{ marginTop: 12 }, styles.textInputStyle]}
-                placeholder='Label'
+                placeholder='User Name'
                 underlineColorAndroid='transparent'
                 maxLength={32}
                 placeholderTextColor='#232323'
                 value={text}
-                onChangeText={(text) => setText(text)}
+                onChangeText={(text) => setName(text)}
               />
               <TextInput
                 style={[{ marginTop: 12 }, styles.textInputStyle]}
-                placeholder='Label'
+                placeholder='Password'
                 underlineColorAndroid='transparent'
                 maxLength={32}
                 placeholderTextColor='#232323'
                 value={text}
-                onChangeText={(text) => setText(text)}
+                onChangeText={(text) => setPassword(text)}
               />
             </View>
             <View style={styles.actions}>

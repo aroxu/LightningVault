@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Modal, Text, TouchableOpacity, TextInput, View } from 'react-native'
+import React from 'react'
+import { Modal, Text, TouchableOpacity, View } from 'react-native'
 // eslint-disable-next-line no-unused-vars
 import Icon from 'react-native-vector-icons/Ionicons'
 import { styles } from '../styles/Modal.style'
@@ -9,7 +9,10 @@ type props = {
   onCancel: (reset: boolean) => void
 }
 
-const ResetPincodeConfirm: React.FC<props> = ({ visible, onCancel }: props) => {
+const UpdatePincodeConfirm: React.FC<props> = ({
+  visible,
+  onCancel
+}: props) => {
   return (
     <View>
       <Modal
@@ -24,7 +27,7 @@ const ResetPincodeConfirm: React.FC<props> = ({ visible, onCancel }: props) => {
             <View style={{ alignItems: 'flex-start', width: '100%' }}>
               <View style={styles.header}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>
-                  Reset Pincode
+                  Sure to Change Pincode?
                 </Text>
                 <TouchableOpacity onPress={() => onCancel(false)}>
                   <Icon name='ios-close-outline' size={22} />
@@ -34,7 +37,7 @@ const ResetPincodeConfirm: React.FC<props> = ({ visible, onCancel }: props) => {
             <View style={styles.actions}>
               <View>
                 <TouchableOpacity onPress={() => onCancel(true)}>
-                  <Text style={{ color: '#ff0000' }}>Reset</Text>
+                  <Text style={{ color: '#ff0000' }}>Change</Text>
                 </TouchableOpacity>
               </View>
               <View>
@@ -50,4 +53,4 @@ const ResetPincodeConfirm: React.FC<props> = ({ visible, onCancel }: props) => {
   )
 }
 
-export default ResetPincodeConfirm
+export default UpdatePincodeConfirm
