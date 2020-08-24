@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Status } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { hasUserSetPinCode } from '@haskkor/react-native-pincode'
@@ -9,13 +10,22 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer, { RootState } from './src/store'
 import ReduxThunk from 'redux-thunk'
 
+import { Folder } from './src/models'
+
 import HomeScreen from './src/pages/Home'
 import PasswordListScreen from './src/pages/PasswordList'
 import AuthScreen from './src/pages/Auth'
 import SetupScreen from './src/pages/Setup'
+import SettingsScreen from './src/pages/Settings'
 import LoadingScreen from './src/components/Loading'
 
-const Stack = createStackNavigator()
+export type StackParamList = {
+  PasswordList: {
+    data: Folder
+  }
+}
+
+const Stack = createStackNavigator<StackParamList>()
 
 const Nav: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true)
@@ -38,10 +48,16 @@ const Nav: React.FC = () => {
       ) : (
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* {isHome ? ( */}
-            <Stack.Screen name='Home' component={HomeScreen} />
-            <Stack.Screen name='PasswordList' component={PasswordListScreen} />
-            {/* ) : (
+            {isHome ? (
+              <>
+                <Stack.Screen name='Home' component={HomeScreen} />
+                <Stack.Screen name='Settings' component={SettingsScreen} />
+                <Stack.Screen
+                  name='PasswordList'
+                  component={PasswordListScreen}
+                />
+              </>
+            ) : (
               <>
                 {setupend ? (
                   <Stack.Screen name='Auth' component={AuthScreen} />
@@ -49,7 +65,7 @@ const Nav: React.FC = () => {
                   <Stack.Screen name='Setup' component={SetupScreen} />
                 )}
               </>
-            )} */}
+            )}
           </Stack.Navigator>
         </NavigationContainer>
       )}

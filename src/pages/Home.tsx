@@ -1,102 +1,132 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   SafeAreaView,
   View,
   Text,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
-  ScrollView,
-  FlatList
+  ScrollView
 } from 'react-native'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { getFolder } from '../utils/manageData'
+import FAB from 'react-native-fab'
+import Icon from 'react-native-vector-icons/Ionicons'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { setFolder } from '../store/data'
 
 // eslint-disable-next-line no-unused-vars
 import { Folder } from '../models'
 
 import FolderItem from '../components/FolderItem'
-import SlidingUpPanel from 'rn-sliding-up-panel'
+// eslint-disable-next-line no-unused-vars
+import AddFolder from '../components/AddFolder'
+import UpdateFolder from '../components/UpdateFolder'
+// eslint-disable-next-line no-unused-vars
+import { RootState } from '../store'
+
+import { useNavigation } from '@react-navigation/native'
 
 const Home: React.FC = () => {
+  // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState<string>('')
-  const [folders, setFolders] = useState<Array<Folder>>([])
+  const [addFolderVisible, setAddFolderVisible] = useState<boolean>(false)
+  const [updateFolderVisible, setUpdateFolderVisible] = useState<boolean>(false)
+  const [updateFolderTarget, setUpdateFolderTarget] = useState<Folder | null>(
+    null
+  )
+  const folders = useSelector((state: RootState) => state.data.folder)
 
-  const addDataRef = useRef<SlidingUpPanel>(null)
+  const navigation = useNavigation()
 
-  const handleChangSearch = useCallback((text) => setSearch(text), [search])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetch = async () => {
       const folderList = await getFolder()
-      setFolders(folderList)
+      dispatch(setFolder(folderList))
     }
     fetch()
   }, [])
 
-  const handleAdd = () => {
-    if (!addDataRef.current) {
-      return
-    }
-    addDataRef.current.show()
+  const sortFolder = (): Folder[] => {
+    return folders.sort((folderList, folderItem) =>
+      folderList.name < folderItem.name
+        ? -1
+        : folderList.name > folderItem.name
+        ? 1
+        : 0
+    )
   }
 
-  const renderFolder = ({
-    item,
-    index
-  }: {
-    item: Folder
-    index: string | number
-  }) => <FolderItem key={index} data={item} />
+  const handleSettings = () => navigation.navigate('Settings')
+
+  const handleLongPressItem = (item: Folder) => {
+    setUpdateFolderTarget(item)
+    setUpdateFolderVisible(true)
+  }
+
+  const renderFolder = (item: Folder, index: number) => (
+    <>
+      {console.warn(item)}
+      <FolderItem
+        key={index}
+        data={item}
+        onLongPress={() => handleLongPressItem(item)}
+      />
+    </>
+  )
 
   return (
     <>
       <View style={styles.background}>
-        <SlidingUpPanel ref={addDataRef} height={50}>
-          <SafeAreaView
-            style={{
-              height: 50,
-              width: '100%',
-              backgroundColor: '#bedbe9'
-            }}>
-            <Text>asdf</Text>
-          </SafeAreaView>
-        </SlidingUpPanel>
         <SafeAreaView style={styles.container}>
+          <AddFolder
+            visible={addFolderVisible}
+            onCancel={() => setAddFolderVisible(false)}
+          />
+          <UpdateFolder
+            visible={updateFolderVisible}
+            folder={updateFolderTarget}
+            onCancel={() => {
+              setUpdateFolderTarget(null)
+              setUpdateFolderVisible(false)
+            }}
+          />
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Lightning Vault</Text>
-            <TouchableOpacity onPress={handleAdd}>
-              <FontAwesomeIcon
+            <TouchableOpacity onPress={handleSettings}>
+              <Icon
                 style={styles.headerIcon}
-                icon={faPlus}
+                name='ios-settings-sharp'
                 size={18}
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.searchView}>
-            <View style={styles.searchWrap}>
-              <FontAwesomeIcon
-                style={styles.searchIcon}
-                icon={faSearch}
-                size={18}
-              />
-              <TextInput
-                style={styles.search}
-                value={search}
-                onChange={handleChangSearch}
-                placeholder={'Search'}
-              />
-            </View>
-          </View>
+          {/* <SearchComponent onChange={(text) => setSearch(text)} /> */}
           <ScrollView>
-            <FlatList
-              style={{ marginTop: 12 }}
-              renderItem={renderFolder}
-              data={folders}
-              numColumns={2}
-            />
+            {/* {folders.length === 0 ? (
+              // <View>
+              <View style={styles.emptyItem}>
+                <Text style={styles.emptyItemText}>
+                  There are no folders yet{'\n'}Click the button below to add
+                </Text>
+              </View>
+            ) : ( */}
+            <View style={{ marginTop: 12 }}>
+              {sortFolder().map((item, index) => renderFolder(item, index))}
+            </View>
+            {/* )} */}
           </ScrollView>
+          <View>
+            <FAB
+              buttonColor='red'
+              iconTextColor='#FFFFFF'
+              onClickAction={() => {
+                setAddFolderVisible(true)
+              }}
+              iconTextComponent={<Icon name='ios-add' />}
+            />
+          </View>
         </SafeAreaView>
       </View>
     </>
@@ -126,27 +156,15 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 26,
-    fontWeight: '600',
-    letterSpacing: 1.1
+    fontWeight: '600'
   },
-  searchView: {
-    marginVertical: 25
+  emptyItem: {
+    marginTop: '90%'
   },
-  searchWrap: {
-    borderRadius: 20,
-    backgroundColor: '#DFDFDF',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  searchIcon: {
-    marginLeft: 15
-  },
-  search: {
-    flex: 1,
-    paddingVertical: 10,
-    paddingLeft: 15,
-    paddingRight: 10,
-    color: '#000000'
+  emptyItemText: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: '#343434'
   }
 })
 

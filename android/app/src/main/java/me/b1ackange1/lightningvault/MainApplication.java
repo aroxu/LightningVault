@@ -1,4 +1,4 @@
-package com.lightningvault;
+package me.b1ackange1.lightningvault;
 
 import android.app.Application;
 import android.content.Context;

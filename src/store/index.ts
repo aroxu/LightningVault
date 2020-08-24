@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import nav from './nav'
+import data from './data'
 
 const rootReducer = combineReducers({
-  nav
+  nav,
+  data
 })
 
 export default rootReducer

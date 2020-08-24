@@ -3,14 +3,14 @@ export type Folder = {
   id: string
   name: string
   color: string
-  icon: string
   list: string[]
 }
 
 export type Password = {
   id: string
+  text: string
   name: string
-  type: PasswordType
+  password: string
 }
 
 export enum PasswordType {
