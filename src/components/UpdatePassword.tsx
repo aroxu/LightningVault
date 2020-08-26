@@ -51,6 +51,12 @@ const UpdatePassword: React.FC<props> = ({
     onUpdate()
   }
 
+  const clearInputData = async () => {
+    setName('')
+    setText('')
+    setPassword('')
+  }
+
   useEffect(() => {
     setName(passwordProp.name)
     setPassword(passwordProp.password)
@@ -63,7 +69,8 @@ const UpdatePassword: React.FC<props> = ({
         animationType='slide'
         transparent={true}
         visible={visible}
-        onRequestClose={() => {
+        onRequestClose={async () => {
+          clearInputData()
           onCancel()
         }}>
         <View style={styles.centeredView}>
@@ -92,8 +99,8 @@ const UpdatePassword: React.FC<props> = ({
                 underlineColorAndroid='transparent'
                 maxLength={32}
                 placeholderTextColor='#232323'
-                value={text}
-                onChangeText={(text) => setName(text)}
+                value={name}
+                onChangeText={(name) => setName(name)}
               />
               <TextInput
                 style={[{ marginTop: 12 }, styles.textInputStyle]}
@@ -101,8 +108,9 @@ const UpdatePassword: React.FC<props> = ({
                 underlineColorAndroid='transparent'
                 maxLength={32}
                 placeholderTextColor='#232323'
-                value={text}
-                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(password) => setPassword(password)}
               />
             </View>
             <View style={styles.actions}>

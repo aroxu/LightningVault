@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 // eslint-disable-next-line no-unused-vars
 import { Folder, Password, PasswordType } from '../models'
 import AsyncStorage from '@react-native-community/async-storage'

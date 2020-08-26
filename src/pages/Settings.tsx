@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  SafeAreaView
-} from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { setFolder as setFolderAction } from '../store/data'
-import { showAuth } from '../store/nav'
+import { showAuth, setSetupEnd } from '../store/nav'
 
 import { setFolder, setPassword } from '../utils/manageData'
 
@@ -50,6 +44,7 @@ const Settings: React.FC<props> = () => {
     setResetPincodeVisible(false)
     if (reset) {
       await deleteUserPinCode()
+      dispatch(setSetupEnd(false))
       dispatch(showAuth())
     }
   }
@@ -78,7 +73,7 @@ const Settings: React.FC<props> = () => {
             />
             <BuildButton
               name='Delete All Data'
-              buttonName='Delete All'
+              buttonName='Delete'
               description='Delete All data of password and folder.'
               color='#ff0000'
               onPress={() => setConfirmResetVislible(true)}
@@ -92,6 +87,7 @@ const Settings: React.FC<props> = () => {
 
 type buildCategoryProps = {
   name: string
+  children: Element
 }
 const BuildCategory: React.FC<buildCategoryProps> = ({
   name,
@@ -149,7 +145,5 @@ const BuildButton: React.FC<buildButtonProps> = ({
     </View>
   )
 }
-
-const styles = StyleSheet.create({})
 
 export default Settings

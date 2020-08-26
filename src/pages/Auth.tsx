@@ -32,6 +32,7 @@ const Auth: React.FC = () => {
           finishProcess={(data) => {
             dispatch(showHome())
           }}
+          touchIDDisabled={true}
         />
       </View>
     </SafeAreaView>

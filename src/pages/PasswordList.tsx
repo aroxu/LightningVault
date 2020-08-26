@@ -83,11 +83,13 @@ const PasswordList: React.FC<props> = ({
         <View>
           <UpdatePassword
             visible={updatePassword}
-            onCancel={() => setUpdatePassword(false)}
+            onCancel={() => {
+              setUpdatePasswordTarget(null)
+              setUpdatePassword(false)
+            }}
             password={updatePasswordTarget}
             folderID={route.params.data.id}
             onUpdate={() => {
-              setUpdatePasswordTarget(null)
               loadPassword()
             }}
           />
